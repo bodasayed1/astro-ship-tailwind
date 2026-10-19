@@ -1,17 +1,17 @@
 let score = 50;
 
 if (score < 0 || score > 100) {
-  console.log ("درجة غير صحيحة");
+  console.log("درجة غير صحيحة");
 } else if (score >= 85) {
-  console.log ("ممتاز");
+  console.log("ممتاز");
 } else if (score >= 75) {
-  console.log ("جيد جدا");
+  console.log("جيد جدا");
 } else if (score >= 65) {
-  console.log ("جيد");
+  console.log("جيد");
 } else if (score >= 50) {
-  console.log ("مقبول");
+  console.log("مقبول");
 } else {
-  console.log( "راسب");
+  console.log("راسب");
 }
 
 // second task
@@ -42,13 +42,10 @@ for (let i = 0; i < 7; i++) {
   distance >= 3000
     ? console.log("Day " + (i + 1) + " " + distance + " M (Hard day)")
     : console.log("Day " + (i + 1) + " " + distance + " M");
-    total += distance;
-    distance += 500;
+  total += distance;
+  distance += 500;
 }
-console.log("Total distance = " + total +" M");
-
-
-
+console.log("Total distance = " + total + " M");
 
 // fourth task
 
@@ -56,17 +53,73 @@ let price = 1000;
 let savings = 0;
 let weeks = 0;
 while (savings < price) {
-  savings+=150
-  weeks++
-  console.log("Week: "+ weeks + " and, You have: " +savings+ " Pounds")
+  savings += 150;
+  weeks++;
+  console.log("Week: " + weeks + " and, You have: " + savings + " Pounds");
 }
-console.log("You achieved you goal within " + weeks+" Weeks, And you have: " + savings +" Pounds")
-
+console.log(
+  "You achieved you goal within " +
+    weeks +
+    " Weeks, And you have: " +
+    savings +
+    " Pounds",
+);
 
 // last task
 const correctPin = "1234";
 let balance = 2000;
-let pinAttempts = ["1111", "2580", "1234"];
+let pinAttempts = ["1111", "0000", "1234"];
 
-let operation = "withdraw"; 
-let amount = 500;
+let operation = "withdraw";
+let amount = 5000;
+
+let attempt = 0;
+do {
+  if (pinAttempts[attempt] === correctPin) {
+    console.log("Wellcome you can proceed now");
+
+    switch (operation) {
+      case "balance":
+        console.log("Your balance is: " + balance + " Pounds");
+        break;
+
+      case "withdraw":
+        if (amount <= balance) {
+          balance = balance - amount;
+          console.log(
+            "You widthdraw: " +
+              amount +
+              " your new balance is: " +
+              balance +
+              " Pounds",
+          );
+        } else {
+          console.log("Insufficient balance");
+        }
+        break;
+
+      case "deposit":
+        balance = balance + amount;
+        console.log(
+          "You deposit: " +
+            amount +
+            " your new balance is: " +
+            balance +
+            " Pounds",
+        );
+        break;
+
+      default:
+        console.log("wrong operation");
+    }
+
+    break;
+  } else {
+    attempt++;
+    attempt === 3
+      ? console.log("Accound disablled")
+      : console.log(
+          "Wrong password you got: " + (3 - attempt) + " attempts left",
+        );
+  }
+} while (attempt < 3);
